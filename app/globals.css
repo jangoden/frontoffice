@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+      --foreground: #000000;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+    /* Line clamp utilities */
+    .line-clamp-1 {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+    }
+  
+    .line-clamp-2 {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+  
+    .line-clamp-3 {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+  
+    /* Hide scrollbar utility */
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+  
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari and Opera */
+    }
+}
+
+/* globals.css */
+
+/* ... kode lainnya ... */
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+  /* Sesuaikan durasi untuk efek slowmo */
+}
+
+/* Untuk menunda animasi pada elemen yang berbeda */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+html,
+body {
+  width: 100%;
+  overflow-x: clip;
+}
+
+/* stop scroll kanan */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:root {
+  --header-h: 64px;
+  /* tinggi header mobile */
+}
+
+:root {
+  --logo-h: 28px;
+  /* mobile */
+}
+
+@media (min-width:640px) {
+  :root {
+    --logo-h: 32px;
+  }
+}
+
+/* sm */
+@media (min-width:1024px) {
+  :root {
+    --logo-h: 36px;
+  }
+}
+
+/* lg */

@@ -1,0 +1,30 @@
+// components/PageHeader.tsx
+"use client";
+
+interface PageHeaderProps {
+  title: string;
+  subtitle: string;
+}
+
+export default function PageHeader({ title, subtitle }: PageHeaderProps) {
+  return (
+    <section className="relative bg-slate-900 pt-32 pb-20 text-center text-white">
+      {/* Efek Latar Belakang Halus */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-br from-sky-500 to-transparent blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 h-full w-full bg-gradient-to-tl from-fuchsia-600 to-transparent blur-3xl"></div>
+      </div>
+
+      <div className="container relative z-10 mx-auto px-6">
+        <div data-aos="fade-up">
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">
+            {title}
+          </h1>
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-300">
+            {subtitle}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
