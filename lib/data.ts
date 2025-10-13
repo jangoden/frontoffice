@@ -1,62 +1,56 @@
-// lib/postsData.ts
-import { ApiPost } from "@/lib/types";
+// lib/data.ts
 import { siteConfig } from "@/lib/config";
+import type { Template } from "@/app/cari-templates/types";
+import type { ApiTemplateCategory } from "@/components/template/DesainPageHeader";
 
 /**
- * Mengambil semua postingan blog dari API.
- * Fungsi ini digunakan untuk mengisi halaman blog utama.
- * Termasuk penanganan error dan mengembalikan array kosong jika gagal.
- * @returns {Promise<ApiPost[]>} Promise yang menghasilkan array postingan.
+ * Mengambil data template dari API, dengan opsi filter berdasarkan kategori.
+ * @param {string | null} categorySlug - Slug kategori untuk filter, atau null untuk semua.
+ * @returns {Promise<Template[]>} Promise yang menghasilkan array template.
  */
-export async function getAllPosts(): Promise<ApiPost[]> {
-  try {
-    // Menggunakan apiUrl dari siteConfig yang sudah diatur dengan environment variables
-    const apiUrl = `${siteConfig.apiUrl}/api/v1/posts`;
+export async function fetchTemplates(categorySlug: string | null): Promise<Template[]> {
+  // Bangun URL API secara dinamis
+  let apiUrl = `${siteConfig.apiUrl}/api/templates`;
+  if (categorySlug) {
+    apiUrl += `?category=${categorySlug}`;
+  }
 
-    // Mengambil data dengan opsi revalidate untuk caching (ISR)
-    const res = await fetch(apiUrl, { next: { revalidate: 3600 } }); // Revalidate setiap jam
+  try {
+    // Gunakan cache 'no-store' agar data selalu terbaru
+    const res = await fetch(apiUrl, { cache: "no-store" });
 
     if (!res.ok) {
-      console.error("Gagal mengambil data postingan, status:", res.status);
-      // Mengembalikan array kosong jika fetch gagal agar halaman tidak crash
-      return [];
+      console.error("Gagal mengambil data template, status:", res.status);
+      return []; // Kembalikan array kosong jika gagal
     }
 
     const response = await res.json();
     // API Laravel biasanya membungkus data dalam properti 'data'
     return response.data || [];
   } catch (error) {
-    console.error("Terjadi error saat mengambil semua post:", error);
-    // Mengembalikan array kosong jika terjadi kesalahan
-    return [];
+    console.error("Error di fetchTemplates():", error);
+    return []; // Kembalikan array kosong jika terjadi error
   }
 }
 
 /**
- * Mengambil detail satu postingan blog berdasarkan slug dari API.
- * Fungsi ini digunakan untuk halaman detail postingan blog.
- * @param {string} slug - Slug dari post yang akan diambil.
- * @returns {Promise<ApiPost | null>} Promise yang menghasilkan objek post atau null jika tidak ditemukan.
+ * Mengambil semua data kategori template dari API.
+ * @returns {Promise<ApiTemplateCategory[]>} Promise yang menghasilkan array kategori.
  */
-export async function getPostDetail(slug: string): Promise<ApiPost | null> {
+export async function fetchCategories(): Promise<ApiTemplateCategory[]> {
+  const apiUrl = `${siteConfig.apiUrl}/api/template-categories`;
   try {
-    const apiUrl = `${siteConfig.apiUrl}/api/v1/posts/${slug}`;
-    const res = await fetch(apiUrl, {
-      headers: { Accept: "application/json" },
-      next: { revalidate: 3600 }, // Revalidate setiap jam
-    });
+    const res = await fetch(apiUrl, { cache: "no-store" });
 
-    if (res.status === 404) {
-      return null; // Postingan tidak ditemukan
-    }
     if (!res.ok) {
-      throw new Error(`API error: ${res.status}`);
+      console.error("Gagal mengambil data kategori, status:", res.status);
+      return [];
     }
 
-    const json = await res.json();
-    return json?.data ?? null;
-  } catch (err) {
-    console.error(`Error fetching post detail for slug "${slug}":`, err);
-    return null;
+    const response = await res.json();
+    return response.data || [];
+  } catch (error) {
+    console.error("Error di fetchCategories():", error);
+    return [];
   }
 }
