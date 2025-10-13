@@ -13,6 +13,7 @@ import PostBody from "@/components/blog/post-body";
 import PostFooter from "@/components/blog/post-footer";
 import JsonLd from "@/components/blog/json-ld";
 import { stripHtml } from "@/lib/utils";
+import { siteConfig } from "@/lib/config";
 
 // ✅ Next 15.5: params adalah Promise
 type PageParams = Promise<{ slug: string }>;
@@ -26,7 +27,7 @@ export async function generateMetadata({
   const post = await getPostDetail(slug);
   if (!post) return { title: "Artikel tidak ditemukan" };
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const siteUrl = siteConfig.siteUrl || "";
   const shareUrl = `${siteUrl}/blog/${post.slug}`;
   const description = stripHtml(post.content).slice(0, 160);
 
@@ -58,7 +59,7 @@ export default async function PostDetailPage({
   const post = await getPostDetail(slug);
   if (!post) notFound();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const siteUrl = siteConfig.siteUrl || "";
   const shareUrl = `${siteUrl}/blog/${post.slug}`;
 
   return (

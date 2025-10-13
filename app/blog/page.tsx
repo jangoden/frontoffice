@@ -2,14 +2,15 @@
 
 import BlogList from "@/components/BlogList";
 import { ApiPost, PostCardProps } from "@/lib/types";
+import { siteConfig } from "@/lib/config";
 
 // Fungsi untuk mengambil data dari API
 async function getPosts(): Promise<ApiPost[]> {
   try {
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/posts`;
-    const res = await fetch(apiUrl, { cache: "no-store" });
+  const apiUrl = `${siteConfig.apiUrl}/api/v1/posts`;
+  const res = await fetch(apiUrl, { next: { revalidate: 3600 } });
 
-    if (!res.ok) {y
+    if (!res.ok) {
       console.error("Gagal mengambil data postingan, status:", res.status);
       return [];
     }

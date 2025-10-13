@@ -5,11 +5,12 @@ import LoadingScreen from "../../components/template/LoadingScreen";
 import DesainPageHeader, { ApiTemplateCategory } from "../../components/template/DesainPageHeader";
 import TemplateGrid from "../../components/template/TemplateGrid";
 import { Template } from "./types"; // Pastikan path ke tipe data Template benar
+import { siteConfig } from "@/lib/config";
 
 // Fungsi untuk mengambil data template dari API
 async function fetchTemplates(categorySlug: string | null): Promise<Template[]> {
   // Bangun URL API secara dinamis
-  let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/templates`;
+  let apiUrl = `${siteConfig.apiUrl}/api/v1/templates`;
   if (categorySlug) {
     apiUrl += `?category=${categorySlug}`;
   }
@@ -31,7 +32,7 @@ async function fetchTemplates(categorySlug: string | null): Promise<Template[]> 
 
 // Fungsi untuk mengambil data kategori dari API
 async function fetchCategories(): Promise<ApiTemplateCategory[]> {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/template-categories`;
+  const apiUrl = `${siteConfig.apiUrl}/api/v1/template-categories`;
   try {
     const res = await fetch(apiUrl, { cache: "no-store" });
     if (!res.ok) {

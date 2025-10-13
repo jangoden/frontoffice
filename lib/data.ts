@@ -1,14 +1,14 @@
 // lib/data.ts
 import { ApiPost } from "@/lib/types";
 import { postsData } from "@/lib/postsData";
+import { siteConfig } from "@/lib/config";
 
 export async function getPostDetail(slug: string): Promise<ApiPost | null> {
   try {
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/posts/${slug}`;
+  const apiUrl = `${siteConfig.apiUrl}/api/v1/posts/${slug}`;
     const res = await fetch(apiUrl, {
-      cache: "no-store",
       headers: { Accept: "application/json" },
-      next: { revalidate: 0 },
+      next: { revalidate: 3600 },
     });
 
     if (res.status === 404) return null;
