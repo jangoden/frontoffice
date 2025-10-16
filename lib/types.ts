@@ -1,15 +1,18 @@
-// Data asli dari API
-export type ApiPost = {
+// lib/types.ts
+
+// Tipe untuk data post langsung dari API
+export type Post = {
+  id: number;
   title: string;
+  slug: string;
+  content: string;
   image_url: string | null;
   published_date: string;
-  content: string;
-  author: string;
-  category: string;
-  slug: string; // penting: tambahkan slug kalau API memang kasih ini
+  author: string | null;
+  category: string | null;
 };
 
-// Data yang sudah ditransformasi untuk komponen
+// Tipe untuk data post yang sudah disiapkan untuk komponen PostCard
 export type PostCardProps = {
   slug: string;
   title: string;
@@ -23,3 +26,6 @@ export type PostCardProps = {
     name: string;
   };
 };
+
+// Tipe untuk data post dari API (nama alias agar lebih jelas)
+export type ApiPost = Post;
