@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "warungnyaweb.biz.id",
+        hostname: "backend.warungnyaweb.biz.id/",
         port: "", // Kosongkan karena menggunakan port standar (443)
         pathname: "/storage/**",
       },
