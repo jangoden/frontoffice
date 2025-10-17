@@ -7,9 +7,8 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
-  swcMinify: true,
   env: {
-    // TANPA /api
+    // TANPA /api (biar nggak dobel /api/api)
     NEXT_PUBLIC_API_BASE_URL: 'https://backend.warungnyaweb.biz.id',
   },
 };
