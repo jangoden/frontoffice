@@ -1,6 +1,6 @@
 export const siteConfig = {
   // Diperbarui: Menambahkan /api di akhir URL
-  apiUrl: process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api",
+  apiUrl: process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000",
   
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   siteName: process.env.NEXT_PUBLIC_SITE_NAME || "Warung Digital", // Bisa disesuaikan
