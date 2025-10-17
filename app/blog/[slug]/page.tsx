@@ -1,12 +1,9 @@
-// app/blog/[slug]/page.tsx
-
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const fetchCache = "default-no-store";
 
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-
 import { getPostDetail } from "@/lib/data";
 import PostHeader from "@/components/blog/post-header";
 import PostBody from "@/components/blog/post-body";
@@ -15,21 +12,14 @@ import JsonLd from "@/components/blog/json-ld";
 import { stripHtml } from "@/lib/utils";
 import { siteConfig } from "@/lib/config";
 
-// ✅ Next 15.5: params adalah Promise
-type PageParams = Promise<{ slug: string }>;
+type PageParams = { params: { slug: string } };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: PageParams;
-}): Promise<Metadata> {
-  const { slug } = await params; // ✅ wajib await
-  const post = await getPostDetail(slug);
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+  const post = await getPostDetail(params.slug);
   if (!post) return { title: "Artikel tidak ditemukan" };
 
-  const siteUrl = siteConfig.siteUrl || "";
-  const shareUrl = `${siteUrl}/blog/${post.slug}`;
-  const description = stripHtml(post.content).slice(0, 160);
+  const shareUrl = `${siteConfig.siteUrl}/blog/${post.slug}`;
+  const description = stripHtml(post.content || "").slice(0, 160);
 
   return {
     title: post.title,
@@ -50,17 +40,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function PostDetailPage({
-  params,
-}: {
-  params: PageParams;
-}) {
-  const { slug } = await params; // ✅ wajib await
-  const post = await getPostDetail(slug);
+export default async function PostDetailPage({ params }: PageParams) {
+  const post = await getPostDetail(params.slug);
   if (!post) notFound();
 
-  const siteUrl = siteConfig.siteUrl || "";
-  const shareUrl = `${siteUrl}/blog/${post.slug}`;
+  const shareUrl = `${siteConfig.siteUrl}/blog/${post.slug}`;
 
   return (
     <>
@@ -71,7 +55,6 @@ export default async function PostDetailPage({
           <PostFooter post={post} shareUrl={shareUrl} />
         </article>
       </main>
-
       <JsonLd post={post} url={shareUrl} />
     </>
   );
