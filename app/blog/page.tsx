@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/config";
 async function getPosts(): Promise<ApiPost[]> {
   try {
   const apiUrl = `${siteConfig.apiUrl}/api/v1/posts`;
-  const res = await fetch(apiUrl, { next: { revalidate: 3600 } });
+  const res = await fetch(apiUrl, { cache: 'no-store' });
 
     if (!res.ok) {
       console.error("Gagal mengambil data postingan, status:", res.status);
