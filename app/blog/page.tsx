@@ -1,18 +1,19 @@
+// app/blog/page.tsx
 import BlogList from "@/components/BlogList";
-import type { PostCardProps } from "@/lib/types";
+import type { ApiPost, PostCardProps } from "@/lib/types";
 import { getPosts } from "@/lib/data";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function BlogPage() {
-  const apiPosts = await getPosts();
+  const apiPosts: ApiPost[] = await getPosts();
 
-  const transformed: PostCardProps[] = apiPosts.map((post: any) => ({
+  const transformedPosts: PostCardProps[] = apiPosts.map((post: ApiPost) => ({
     slug: post.slug,
     title: post.title,
     imageUrl: post.image_url || "/placeholder-image.jpg",
     date: post.published_date,
-    excerpt: (post.content || '').replace(/<[^>]*>?/gm, "").substring(0, 100) + "...",
+    excerpt: (post.content || "").replace(/<[^>]*>?/gm, "").substring(0, 100) + "...",
     author: { name: post.author || "Penulis" },
     category: { name: post.category || "Tutorial" },
   }));
@@ -31,7 +32,8 @@ export default async function BlogPage() {
             Jelajahi artikel kami tentang desain, pengembangan, dan strategi digital.
           </p>
         </div>
-        <BlogList posts={transformed} />
+
+        <BlogList posts={transformedPosts} />
       </div>
     </main>
   );
