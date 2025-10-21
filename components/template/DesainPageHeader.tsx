@@ -35,9 +35,9 @@ export default function DesainPageHeader({
   };
 
   return (
-    <div className="text-center mb-8 md:mb-16 pt-4 md:pt-8 px-4">
+    <div className="text-center mb-6 md:mb-10 pt-2 md:pt-4 px-4">
       {/* Bagian judul, subjudul, dan search tidak perlu diubah */}
-      <div className="inline-block mb-4 md:mb-6">
+      <div className="inline-block mb-2 md:mb-4">
         <span className="bg-gradient-to-r from-green-50 to-emerald-50 text-xs sm:text-sm font-semibold tracking-wide uppercase px-4 py-1 rounded-full">
           <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
             Koleksi Premium
@@ -45,7 +45,7 @@ export default function DesainPageHeader({
         </span>
       </div>
       
-      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight text-gray-900 mb-4 md:mb-6 leading-tight">
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight text-gray-900 mb-2 md:mb-4 leading-tight">
         Cari Desain Template untuk Bisnis
         <span className="block bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent sm:mt-2">
           Impian Anda
@@ -57,7 +57,7 @@ export default function DesainPageHeader({
         sempurna bagi proyek website profesional Anda berikutnya.
       </p>
 
-      <div className="max-w-3xl mx-auto mt-8 md:mt-12">
+      <div className="max-w-3xl mx-auto mt-6 md:mt-8">
         <div className="relative">
           <div className="flex items-center">
             <div className="relative flex-1">

@@ -153,9 +153,12 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/kontak"
-            className="hidden rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-transform hover:scale-[1.03] md:inline-flex"
+            className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-700 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-emerald-800 hover:scale-[1.02]"
           >
-            Hubungi Kami
+            Contact
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+            </svg>
           </Link>
 
           <button
@@ -227,9 +230,9 @@ export default function Navbar() {
             <Link
               href="/kontak"
               onClick={() => setOpen(false)}
-              className="mt-1 rounded-lg bg-white px-4 py-3 text-center font-bold text-emerald-900"
+              className="mt-1 rounded-lg bg-gradient-to-r from-emerald-500 to-emerald-700 px-3 py-2 text-sm text-center font-bold text-white transition-all duration-300 hover:from-emerald-600 hover:to-emerald-800"
             >
-              Hubungi Kami
+              Contact
             </Link>
           </nav>
         </div>

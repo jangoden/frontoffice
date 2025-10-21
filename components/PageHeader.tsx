@@ -8,7 +8,7 @@ interface PageHeaderProps {
 
 export default function PageHeader({ title, subtitle }: PageHeaderProps) {
   return (
-    <section className="relative bg-emerald-700 pt-32 pb-20 text-center text-white overflow-hidden rounded-bl-[4rem] rounded-br-[4rem]">
+    <section className="relative bg-emerald-700 pt-20 pb-12 md:pt-24 md:pb-16 text-center text-white overflow-hidden rounded-bl-[4rem] rounded-br-[4rem]">
       {/* Grid Overlay (similar to Hero) */}
       <div
         aria-hidden
