@@ -1,15 +1,15 @@
 import React from "react";
-import LoadingScreen from "../../components/template/LoadingScreen";
+
 import TemplateGrid from "../../components/template/TemplateGrid";
 import { Template } from "./types"; // Pastikan path ke tipe data Template benar
-import { siteConfig } from "@/lib/config";
+
 import apiClient from "@/lib/axios";
 import { AxiosError } from "axios";
 import PageHeader from "@/components/PageHeader";
 
 // Fungsi untuk mengambil data template dari API
 async function fetchTemplates(): Promise<Template[]> {
-  let apiUrl = `/api/v1/templates`;
+  const apiUrl = `/api/v1/templates`;
   try {
     const res = await apiClient.get<{
       data: Template[];
@@ -17,7 +17,21 @@ async function fetchTemplates(): Promise<Template[]> {
     return res.data.data || [];
   } catch (error) {
     const axiosError = error as AxiosError;
-    console.error("Error fetching templates:", axiosError.response?.status ? `${axiosError.response.status} - ${axiosError.response.data?.message || axiosError.response.data || 'Unknown error'}` : axiosError.message || 'Network Error');
+    interface ErrorResponseData { message?: string; }
+    let errorMessage = 'Network Error';
+    if (axiosError.response) {
+      errorMessage = `${axiosError.response.status} - `;
+      if (axiosError.response.data && typeof axiosError.response.data === 'object') {
+        errorMessage += (axiosError.response.data as ErrorResponseData).message || JSON.stringify(axiosError.response.data);
+      } else if (axiosError.response.data) {
+        errorMessage += axiosError.response.data;
+      } else {
+        errorMessage += 'Unknown error';
+      }
+    } else if (axiosError.message) {
+      errorMessage = axiosError.message;
+    }
+    console.error("Error fetching templates:", errorMessage);
     return [];
   }
 }

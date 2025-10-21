@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Template } from '@/app/cari-templates/types'; // Pastikan path ini benar
+import { Template } from '@/app/templates/types'; // Pastikan path ini benar
 
 interface TemplateCardProps {
   template: Template;

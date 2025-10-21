@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   EnvelopeIcon,
   PhoneIcon,
@@ -18,12 +19,13 @@ export default function Footer() {
           {/* Kolom 1: Logo & Deskripsi */}
           <div className="lg:col-span-1">
             <Link href="/" aria-label="Beranda" className="inline-block mb-6">
-              <img
-                src="/images/logo.svg"
-                alt="Logo Perusahaan"
-                className="h-auto w-36 brightness-0 invert"
-              />
-            </Link>
+                          <Image
+                              src="/images/logo.svg"
+                              alt="Logo Perusahaan"
+                              width={144} // w-36 is 144px
+                              height={32} // Placeholder, will be adjusted by Next.js based on aspect ratio
+                              className="h-auto w-36 brightness-0 invert"
+                          />            </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
               Partner transformasi digital terpercaya yang membantu bisnis
               bertumbuh melalui solusi teknologi dan desain yang inovatif.
@@ -44,7 +46,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/layanan"
+                  href="/services"
                   className="text-gray-400 hover:text-emerald-400 transition-colors duration-300"
                 >
                   Layanan

@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import Hero from "@/components/Hero";
-import About from "@/components/About";
+
 import ServicesSummary from "@/components/ServicesSummary";
 // import Bloglist from "@/components/Bloglist";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <About />
+
       <ServicesSummary />
       <WhyChooseUs />
       {/* <BlogList /> */}

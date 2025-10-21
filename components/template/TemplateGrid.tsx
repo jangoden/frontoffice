@@ -1,6 +1,6 @@
 import React from 'react';
 import TemplateCard from './TemplateCard';
-import { Template } from '@/app/cari-templates/types'; // Pastikan path ini benar
+import { Template } from '@/app/templates/types'; 
 
 interface TemplateGridProps {
   templates: Template[];

@@ -2,15 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 type NavItem = { name: string; href: string; section?: string };
 const navLinks: NavItem[] = [
   { name: "Beranda", href: "/" }, // section "top" (implicit)
-  { name: "Tentang", href: "/#about", section: "about" },
-  { name: "Layanan", href: "/layanan" },
-  { name: "Desain", href: "/cari-templates" },
+  { name: "Tentang", href: "/about" },
+  { name: "Layanan", href: "/services" },
+  { name: "Desain", href: "/templates" },
   { name: "Blog", href: "/blog" },
 ];
 
@@ -112,9 +113,11 @@ export default function Navbar() {
           aria-label="Beranda"
           className="flex shrink-0 items-center gap-2"
         >
-          <img
+          <Image
             src="/images/logo.svg"
             alt="Logo"
+            width={100} // Placeholder, adjust as needed
+            height={40} // Placeholder, adjust as needed
             className="h-[var(--logo-h)] w-auto"
           />
         </Link>

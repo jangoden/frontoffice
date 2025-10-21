@@ -2,7 +2,7 @@
 import Services from "@/components/Services";
 import PageHeader from "@/components/PageHeader";
 
-export default function LayananPage() {
+export default function ServicesPage() {
   return (
     <>
       <PageHeader

@@ -54,15 +54,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const templateUrls = templates.map((template) =>
-    makeUrl(`${baseUrl}/cari-templates/${template.slug}`, template.updated_at)
+    makeUrl(`${baseUrl}/templates/${template.slug}`, template.updated_at)
   );
 
   // 2. Definisikan halaman statis
   const staticPages = [
     { url: baseUrl, lastModified: new Date() },
-    { url: `${baseUrl}/layanan`, lastModified: new Date() },
-    { url: `${baseUrl}/blog`, lastModified: new Date() },
-    { url: `${baseUrl}/cari-templates`, lastModified: new Date() },
+    { url: `${baseUrl}/services`, lastModified: new Date() },
+    { url: `${baseUrl}/templates`, lastModified: new Date() },
     { url: `${baseUrl}/kontak`, lastModified: new Date() },
   ];
 

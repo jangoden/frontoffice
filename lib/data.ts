@@ -1,6 +1,6 @@
 // lib/data.ts
 import type { ApiPost, ApiListResponse, ApiDetailResponse } from "./types";
-import { siteConfig } from "./config";
+
 import apiClient from "./axios";
 import { AxiosError } from "axios";
 
@@ -10,7 +10,21 @@ export async function getPosts(): Promise<ApiPost[]> {
     return res.data.data ?? [];
   } catch (error) {
     const axiosError = error as AxiosError;
-    console.error("Error fetching posts:", axiosError.response?.status ? `${axiosError.response.status} - ${axiosError.response.data?.message || axiosError.response.data || 'Unknown error'}` : axiosError.message || 'Network Error');
+    interface ErrorResponseData { message?: string; }
+    let errorMessage = 'Network Error';
+    if (axiosError.response) {
+      errorMessage = `${axiosError.response.status} - `;
+      if (axiosError.response.data && typeof axiosError.response.data === 'object') {
+        errorMessage += (axiosError.response.data as ErrorResponseData).message || JSON.stringify(axiosError.response.data);
+      } else if (axiosError.response.data) {
+        errorMessage += axiosError.response.data;
+      } else {
+        errorMessage += 'Unknown error';
+      }
+    } else if (axiosError.message) {
+      errorMessage = axiosError.message;
+    }
+    console.error("Error fetching posts:", errorMessage);
     return [];
   }
 }
@@ -24,7 +38,21 @@ export async function getPostDetail(slug: string): Promise<ApiPost | null> {
   } catch (error) {
     const axiosError = error as AxiosError;
     if (axiosError.response?.status === 404) return null;
-    console.error("Error fetching post detail:", axiosError.response?.status ? `${axiosError.response.status} - ${axiosError.response.data?.message || axiosError.response.data || 'Unknown error'}` : axiosError.message || 'Network Error');
+    interface ErrorResponseData { message?: string; }
+    let errorMessage = 'Network Error';
+    if (axiosError.response) {
+      errorMessage = `${axiosError.response.status} - `;
+      if (axiosError.response.data && typeof axiosError.response.data === 'object') {
+        errorMessage += (axiosError.response.data as ErrorResponseData).message || JSON.stringify(axiosError.response.data);
+      } else if (axiosError.response.data) {
+        errorMessage += axiosError.response.data;
+      } else {
+        errorMessage += 'Unknown error';
+      }
+    } else if (axiosError.message) {
+      errorMessage = axiosError.message;
+    }
+    console.error("Error fetching post detail:", errorMessage);
     return null;
   }
 }
