@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
@@ -113,12 +112,9 @@ export default function Navbar() {
           aria-label="Beranda"
           className="flex shrink-0 items-center gap-2"
         >
-          <Image
-            src="/images/logo.png"
+          <img
+            src="/images/logo.svg"
             alt="Logo"
-            width={160}
-            height={40}
-            priority
             className="h-[var(--logo-h)] w-auto"
           />
         </Link>

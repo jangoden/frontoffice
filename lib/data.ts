@@ -1,29 +1,30 @@
 // lib/data.ts
 import type { ApiPost, ApiListResponse, ApiDetailResponse } from "./types";
-
-const API =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "https://backend.warungnyaweb.biz.id";
+import { siteConfig } from "./config";
+import apiClient from "./axios";
+import { AxiosError } from "axios";
 
 export async function getPosts(): Promise<ApiPost[]> {
-  const res = await fetch(`${API}/api/v1/posts`, { cache: "no-store" });
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`POSTS ${res.status}: ${body}`);
+  try {
+    const res = await apiClient.get<ApiListResponse<ApiPost>>("/api/v1/posts");
+    return res.data.data ?? [];
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    console.error("Error fetching posts:", axiosError.response?.status ? `${axiosError.response.status} - ${axiosError.response.data?.message || axiosError.response.data || 'Unknown error'}` : axiosError.message || 'Network Error');
+    return [];
   }
-  const json: ApiListResponse<ApiPost> = await res.json();
-  return json.data ?? [];
 }
 
 export async function getPostDetail(slug: string): Promise<ApiPost | null> {
-  const res = await fetch(
-    `${API}/api/v1/posts/${encodeURIComponent(slug)}`,
-    { cache: "no-store" }
-  );
-  if (res.status === 404) return null;
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`DETAIL ${res.status}: ${body}`);
+  try {
+    const res = await apiClient.get<ApiDetailResponse<ApiPost>>(
+      `/api/v1/posts/${encodeURIComponent(slug)}`
+    );
+    return res.data.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    if (axiosError.response?.status === 404) return null;
+    console.error("Error fetching post detail:", axiosError.response?.status ? `${axiosError.response.status} - ${axiosError.response.data?.message || axiosError.response.data || 'Unknown error'}` : axiosError.message || 'Network Error');
+    return null;
   }
-  const json: ApiDetailResponse<ApiPost> = await res.json();
-  return json.data;
 }

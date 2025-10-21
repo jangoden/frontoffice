@@ -8,7 +8,23 @@ interface PageHeaderProps {
 
 export default function PageHeader({ title, subtitle }: PageHeaderProps) {
   return (
-    <section className="relative bg-slate-900 pt-32 pb-20 text-center text-white">
+    <section className="relative bg-emerald-700 pt-32 pb-20 text-center text-white overflow-hidden rounded-bl-[4rem] rounded-br-[4rem]">
+      {/* Grid Overlay (similar to Hero) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 z-0 opacity-60"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: "20px 20px",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
+          maskImage:
+            "linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)",
+        }}
+      />
       {/* Efek Latar Belakang Halus */}
       <div className="absolute inset-0 z-0 opacity-10">
         <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-br from-sky-500 to-transparent blur-3xl"></div>

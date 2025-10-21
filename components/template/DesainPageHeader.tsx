@@ -35,6 +35,43 @@ export default function DesainPageHeader({
   };
 
   return (
+import React from 'react';
+
+// 1. Tipe data baru untuk kategori yang datang dari API Laravel kita
+// Definisikan tipe ini agar kodemu lebih aman dan mudah dibaca.
+export type ApiTemplateCategory = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
+// 2. Props diupdate untuk menerima array dari tipe data baru di atas
+interface DesainPageHeaderProps {
+  categories: ApiTemplateCategory[]; // Menerima data dinamis dari API
+  selectedCategorySlug: string | null; // Kita lacak berdasarkan slug
+  onCategorySelect: (slug: string | null) => void; // Fungsi untuk mengubah filter
+}
+
+export default function DesainPageHeader({
+  categories,
+  selectedCategorySlug,
+  onCategorySelect,
+}: DesainPageHeaderProps) {
+
+  // 3. Fungsi styling yang JAUH lebih sederhana. Tidak ada lagi colorMap!
+  const getCategoryClasses = (isSelected: boolean) => {
+    const baseClasses = "px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap shadow-sm";
+    
+    if (isSelected) {
+      // Kelas untuk badge yang aktif/terpilih
+      return `${baseClasses} bg-green-600 text-white`;
+    }
+    
+    // Kelas untuk badge yang tidak aktif
+    return `${baseClasses} bg-gray-100 text-gray-800 hover:bg-gray-200`;
+  };
+
+  return (
     <div className="text-center mb-8 md:mb-16 pt-4 md:pt-8 px-4">
       {/* Bagian judul, subjudul, dan search tidak perlu diubah */}
       <div className="inline-block mb-4 md:mb-6">

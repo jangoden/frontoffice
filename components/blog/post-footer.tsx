@@ -35,7 +35,6 @@ export default function PostFooter({ post, shareUrl }: PostFooterProps) {
   const [copied, setCopied] = useState(false);
 
   const encodedUrl = encodeURIComponent(shareUrl);
-  const encodedTitle = encodeURIComponent(post.title);
   const waText = encodeURIComponent(`${post.title} — ${shareUrl}`);
 
   const handleCopy = async () => {

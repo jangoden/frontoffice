@@ -1,5 +1,6 @@
 // app/blog/page.tsx
 import BlogList from "@/components/BlogList";
+import PageHeader from "@/components/PageHeader";
 import type { ApiPost, PostCardProps } from "@/lib/types";
 import { getPosts } from "@/lib/data";
 
@@ -19,20 +20,12 @@ export default async function BlogPage() {
   }));
 
   return (
-    <main className="relative isolate overflow-hidden bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-screen-xl px-6 lg:px-8">
-        <div className="mb-14 text-center">
-          <h1 className="mb-5 text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl">
-            <span className="bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
-              Wawasan & Inspirasi
-            </span>{" "}
-            Terbaru
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            Jelajahi artikel kami tentang desain, pengembangan, dan strategi digital.
-          </p>
-        </div>
-
+    <main className="relative isolate overflow-hidden bg-white">
+      <PageHeader
+        title="Wawasan & Inspirasi Terbaru"
+        subtitle="Jelajahi artikel kami tentang desain, pengembangan, dan strategi digital."
+      />
+      <div className="mx-auto max-w-screen-xl px-6 lg:px-8 py-20 sm:py-28">
         <BlogList posts={transformedPosts} />
       </div>
     </main>

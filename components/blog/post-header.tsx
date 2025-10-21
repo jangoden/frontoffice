@@ -9,7 +9,7 @@ interface PostHeaderProps {
 }
 
 export default function PostHeader({ post }: PostHeaderProps) {
-  const { human: friendlyDate, iso } = formatDate(post.published_date);
+  const { human: friendlyDate } = formatDate(post.published_date);
 
 
   return (

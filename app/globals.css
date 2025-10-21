@@ -143,20 +143,20 @@ svg {
 }
 
 :root {
-  --logo-h: 28px;
+  --logo-h: 16px;
   /* mobile */
 }
 
 @media (min-width:640px) {
   :root {
-    --logo-h: 32px;
+    --logo-h: 20px;
   }
 }
 
 /* sm */
 @media (min-width:1024px) {
   :root {
-    --logo-h: 36px;
+    --logo-h: 24px;
   }
 }
 

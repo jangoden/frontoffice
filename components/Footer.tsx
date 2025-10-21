@@ -2,7 +2,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import {
   EnvelopeIcon,
   PhoneIcon,
@@ -19,11 +18,9 @@ export default function Footer() {
           {/* Kolom 1: Logo & Deskripsi */}
           <div className="lg:col-span-1">
             <Link href="/" aria-label="Beranda" className="inline-block mb-6">
-              <Image
-                src="/images/logo.png"
+              <img
+                src="/images/logo.svg"
                 alt="Logo Perusahaan"
-                width={150}
-                height={40}
                 className="h-auto w-36 brightness-0 invert"
               />
             </Link>
