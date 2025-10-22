@@ -12,9 +12,7 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import apiClient from "@/lib/axios";
 import TemplateGrid from "@/components/template/TemplateGrid";
-
-interface Template { id: number; name: string; description: string; category_slug: string; }
-interface TemplateCategory { id: number; name: string; slug: string; }
+import { Template, TemplateCategory } from "@/app/templates/types";
 
 
 // --- KODE KOMPONEN ASLI DIMULAI DI SINI ---
@@ -28,8 +26,12 @@ async function fetchTemplates(selectedCategorySlug: string | null): Promise<Temp
   try {
     const res = await apiClient.get(apiUrl);
     return res.data.data || [];
-  } catch (error: any) {
-    console.error("Error fetching templates:", error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error fetching templates:", error.message);
+    } else {
+      console.error("An unknown error occurred during template fetching:", error);
+    }
     return [];
   }
 }
@@ -39,19 +41,23 @@ async function fetchCategories(): Promise<TemplateCategory[]> {
   try {
     const res = await apiClient.get(`/api/v1/template-categories`);
     return res.data.data || [];
-  } catch (error: any) {
-    console.error("Error fetching categories:", error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error fetching categories:", error.message);
+    } else {
+      console.error("An unknown error occurred during category fetching:", error);
+    }
     return [];
   }
 }
 
 export default function TemplateFilterAndGrid() {
-  const [templates, setTemplates] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [templates, setTemplates] = useState<Template[]>([]);
+  const [categories, setCategories] = useState<TemplateCategory[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const loadTemplates = useCallback(async (categorySlug) => {
+  const loadTemplates = useCallback(async (categorySlug: string | null) => {
     setLoading(true);
     const fetchedTemplates = await fetchTemplates(categorySlug);
     setTemplates(fetchedTemplates);
@@ -64,7 +70,7 @@ export default function TemplateFilterAndGrid() {
     fetchCategories().then(setCategories);
   }, [loadTemplates]);
 
-  const handleCategoryClick = (categorySlug) => {
+  const handleCategoryClick = (categorySlug: string | null) => {
     setSelectedCategory(categorySlug);
     loadTemplates(categorySlug);
   };

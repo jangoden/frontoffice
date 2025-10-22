@@ -21,6 +21,11 @@ const nextConfig = {
   },
   reactStrictMode: true,
   // The env block that forced the production URL has been removed.
+  turbopack: {
+    // Explicitly set the root to the current directory of next.config.js
+    // to resolve the "multiple lockfiles" warning.
+    root: __dirname,
+  },
 };
 
 module.exports = nextConfig;

@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPostDetail } from "@/lib/data";
 import PageHeader from "@/components/PageHeader";
-import PostHeader from "@/components/blog/post-header";
 import PostBody from "@/components/blog/post-body";
 import PostFooter from "@/components/blog/post-footer";
 import JsonLd from "@/components/blog/json-ld";
