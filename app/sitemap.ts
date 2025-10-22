@@ -62,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: baseUrl, lastModified: new Date() },
     { url: `${baseUrl}/services`, lastModified: new Date() },
     { url: `${baseUrl}/templates`, lastModified: new Date() },
-    { url: `${baseUrl}/kontak`, lastModified: new Date() },
+    { url: `${baseUrl}/contact`, lastModified: new Date() },
   ];
 
   // 3. Gabungkan semua URL

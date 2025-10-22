@@ -152,7 +152,7 @@ export default function Navbar() {
         {/* CTA + tombol mobile */}
         <div className="flex items-center gap-3">
           <Link
-            href="/kontak"
+            href="/contact"
             className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-700 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:from-emerald-600 hover:to-emerald-800 hover:scale-[1.02]"
           >
             Contact
@@ -228,7 +228,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/kontak"
+              href="/contact"
               onClick={() => setOpen(false)}
               className="mt-1 rounded-lg bg-gradient-to-r from-emerald-500 to-emerald-700 px-3 py-2 text-sm text-center font-bold text-white transition-all duration-300 hover:from-emerald-600 hover:to-emerald-800"
             >

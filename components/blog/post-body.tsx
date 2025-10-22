@@ -9,7 +9,7 @@ interface PostBodyProps {
 
 export default function PostBody({ post }: PostBodyProps) {
   return (
-    <div>
+    <div className="mt-8">
       {/* Gambar Utama Artikel (di luar bingkai) */}
       {post.image_url && (
         <div className="relative mb-10 h-64 w-full md:h-96">
@@ -27,7 +27,7 @@ export default function PostBody({ post }: PostBodyProps) {
       <div className="rounded-2xl border border-gray-200 p-6 shadow-sm md:p-8">
         {/* Konten Artikel dari CMS/API dengan styling 'prose' */}
         <div
-          className="prose prose-lg max-w-none prose-a:text-green-600"
+          className="prose prose-lg max-w-prose prose-a:text-green-600"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>

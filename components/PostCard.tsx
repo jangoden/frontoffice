@@ -1,3 +1,5 @@
+"use client";
+
 // components/PostCard.tsx
 
 import Link from "next/link";
@@ -8,7 +10,7 @@ export default function PostCard({ post }: { post: PostCardProps }) {
   return (
     <div className="group flex transform flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
       {/* Gambar Postingan */}
-      <Link href={`/blog/${post.slug}`} className="relative block h-52 w-full">
+      <Link href={`/blog/${post.slug}`} className="relative block h-48 w-full">
         <Image
           src={post.imageUrl}
           alt={`Gambar untuk ${post.title}`}
@@ -19,7 +21,7 @@ export default function PostCard({ post }: { post: PostCardProps }) {
       </Link>
 
       {/* Konten Teks */}
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-4">
         {/* Badge Kategori */}
         <div className="mb-4">
           <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-800">
@@ -35,7 +37,7 @@ export default function PostCard({ post }: { post: PostCardProps }) {
         </h3>
 
         {/* Excerpt */}
-        <p className="mb-5 flex-1 text-base text-gray-600">{post.excerpt}</p>
+        <p className="mb-5 flex-1 text-base text-gray-600 line-clamp-1 overflow-hidden text-ellipsis">{post.excerpt}</p>
 
         {/* Info Author dan Tanggal */}
         <div className="mt-auto flex items-center justify-between border-t border-gray-100 pt-4">

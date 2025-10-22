@@ -5,6 +5,7 @@ export const fetchCache = "default-no-store";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPostDetail } from "@/lib/data";
+import PageHeader from "@/components/PageHeader";
 import PostHeader from "@/components/blog/post-header";
 import PostBody from "@/components/blog/post-body";
 import PostFooter from "@/components/blog/post-footer";
@@ -48,9 +49,13 @@ export default async function PostDetailPage({ params }: PageParams) {
 
   return (
     <>
-      <main className="bg-white px-6 py-20 sm:py-28">
+      <main className="bg-white px-6 pb-20 sm:pb-28">
         <article className="mx-auto max-w-3xl">
-          <PostHeader post={post} />
+      <PageHeader
+        title={post.title}
+        subtitle={`Oleh ${post.author}`}
+        dateString={post.published_date}
+      />
           <PostBody post={post} />
           <PostFooter post={post} shareUrl={shareUrl} />
         </article>

@@ -53,14 +53,14 @@ export default function Hero() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-sm leading-6 text-gray-600 sm:mx-0 sm:mt-8 sm:text-lg sm:leading-8">
-            Kami merancang dan membangun solusi digital yang powerful—mulai dari
-            website modern hingga aplikasi enterprise—untuk mendorong
+            Kami merancang dan membangun solusi digital yang powerful mulai dari
+            website modern hingga aplikasi enterprise untuk mendorong
             pertumbuhan dan efisiensi bisnis Anda.
           </p>
 
           <div className="mt-8 flex items-center justify-center sm:justify-start">
             <Link
-              href="/kontak"
+              href="/contact"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-emerald-500 px-6 py-2.5 text-base font-bold text-white shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:scale-105 hover:bg-emerald-600 hover:shadow-xl hover:shadow-emerald-500/40 sm:px-8 sm:py-3 sm:text-lg"
             >
               <span className="absolute left-0 top-0 h-full w-0 bg-white/20 transition-all duration-500 group-hover:w-full" />

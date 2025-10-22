@@ -25,7 +25,7 @@ export default async function BlogPage() {
         title="Wawasan & Inspirasi Terbaru"
         subtitle="Jelajahi artikel kami tentang desain, pengembangan, dan strategi digital."
       />
-      <div className="mx-auto max-w-screen-xl px-6 lg:px-8 py-20 sm:py-28">
+      <div className="mx-auto max-w-screen-xl px-6 lg:px-8 py-10 sm:py-14">
         <BlogList posts={transformedPosts} />
       </div>
     </main>

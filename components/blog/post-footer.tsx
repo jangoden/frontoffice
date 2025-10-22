@@ -23,7 +23,7 @@ const ShareIcon = ({
   label: string;
 }) => (
   <div
-    className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-gray-800 hover:bg-gray-800 hover:text-white"
+    className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-gray-800 hover:bg-gray-800 hover:text-white"
     aria-label={label}
     title={label}
   >
@@ -110,7 +110,7 @@ export default function PostFooter({ post, shareUrl }: PostFooterProps) {
       </div>
 
       {/* Kembali */}
-      <div className="mt-12 flex justify-center">
+      <div className="mt-8 flex justify-center">
         <Link
           href="/blog"
           className="inline-flex items-center gap-x-2 rounded-lg border border-gray-300 px-5 py-3 font-semibold text-gray-700 transition hover:border-gray-800 hover:bg-gray-800 hover:text-white"
